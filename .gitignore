@@ -1,9 +1,9 @@
 #################
 ## Unity3D
 #################
-UnityTests/Library/
-UnityTests/Temp/
-UnityTests/Assets/UnityVS/
+Unity5Tests/Library/
+Unity5Tests/Temp/
+Unity5Tests/Assets/UnityVS/
 *.sln
 *.csproj
 
