@@ -9,14 +9,21 @@ public class TestTime : MonoBehaviour {
     private float _currentTime = 0.0f;
     private float _currentRealTime = 0.0f;
 
+    ParticleSystem _ps = null;
+
     // Use this for initialization
     void Start () {
         GameObject psObj = new GameObject("Ps");
-        psObj.AddComponent<ParticleSystem>();
-	}
+        _ps = psObj.AddComponent<ParticleSystem>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        //粒子绕过timescale的限制 --性能有点问题
+        _ps.Simulate(Time.realtimeSinceStartup - _currentRealTime, true, false);
+
         _currentTime = Time.time;
         _currentRealTime = Time.realtimeSinceStartup;
 
@@ -32,8 +39,8 @@ public class TestTime : MonoBehaviour {
         }
         if(GUI.Button(new Rect(100, 100, 200, 100), "Rate-0.1"))
         {
-            float t = Time.timeScale * 1.1f;
-            t = t > 100 ? 100 : t;
+            float t = Time.timeScale * 0.9f;
+            t = t < 0 ? 0 : t;
             Time.timeScale = t;
         }
 
