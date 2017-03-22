@@ -7,9 +7,14 @@ public class TestCallLuaFunction : MonoBehaviour {
         @"  function luaFunc(num)                        
                 return num + 1
             end
+            
+            function luaFuncStr(str)                        
+                return str .. str;
+            end
 
             test = {}
             test.luaFunc = luaFunc
+            test.luaFuncStr = luaFuncStr
         ";
     LuaState _state;
 	// Use this for initialization
@@ -37,6 +42,19 @@ public class TestCallLuaFunction : MonoBehaviour {
             int num = CallFunc(func);
             UnityEngine.Profiler.EndSample();
             Debugger.Log("expansion call return: {0}", num);
+
+            //有gc alloc
+            func = _state.GetFunction("test.luaFuncStr");
+            UnityEngine.Profiler.BeginSample("有GCStr");
+            object[] r2 = func.Call("AAA");
+            UnityEngine.Profiler.EndSample();
+            Debugger.Log("generic call return: {0}", r2[0]);
+
+            // no gc alloc
+            UnityEngine.Profiler.BeginSample("无GCStr");
+            string str = CallFunc2(func);
+            UnityEngine.Profiler.EndSample();
+            Debugger.Log("expansion call return: {0}", str);
         }
     }
 
@@ -46,6 +64,16 @@ public class TestCallLuaFunction : MonoBehaviour {
         func.Push(123456);
         func.PCall();
         int num = (int)func.CheckNumber();
+        func.EndPCall();
+        return num;
+    }
+
+    string CallFunc2(LuaFunction func)
+    {
+        func.BeginPCall();
+        func.Push("AAA");
+        func.PCall();
+        string num = (string)func.CheckString();
         func.EndPCall();
         return num;
     }
