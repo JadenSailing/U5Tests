@@ -1,0 +1,27 @@
+ManifestFileVersion: 0
+CRC: 4006020193
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6a440385a3a1a9a260a8d7d9b5d78657
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 532ae3a7f19790e72f6724e5f5ba0e80
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/TestAB/UI/Prefab/TestABPanel1.prefab
+Dependencies:
+- E:/Jaden/U5/U5Tests/Assets/StreamingAssets/TestAB/font.ab
