@@ -1387,11 +1387,21 @@ static public class NGUIText
 				ref italic, ref underline, ref strikethrough, ref ignoreColor))
 			{
 				Color fc;
-
-				if (ignoreColor)
+                //ignoreColor = true; //始终忽略颜色 然后默认色是底色 2017-4-5 21:35:03 by liuzhen
+                if (ignoreColor)
 				{
-					fc = mColors[mColors.size - 1];
-					fc.a *= mAlpha * tint.a;
+                    /*
+                    if(mColors.size == 1)
+                    {
+                        fc = tint;
+                    }
+                    else
+                    {
+					    fc = mColors[mColors.size - 1];
+                    }
+                    */
+                    fc = mColors[mColors.size - 1];
+                    fc.a *= mAlpha * tint.a;
 				}
 				else
 				{
