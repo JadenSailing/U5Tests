@@ -906,14 +906,14 @@ public class UILabel : UIWidget
 
 					if (usage == 0)
 					{
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 						mActiveTTF.textureRebuildCallback = null;
 #endif
 						mFontUsage.Remove(mActiveTTF);
 					}
 					else mFontUsage[mActiveTTF] = usage;
 				}
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 				else mActiveTTF.textureRebuildCallback = null;
 #endif
 			}
@@ -925,7 +925,7 @@ public class UILabel : UIWidget
 				int usage = 0;
 
 				// Font hasn't been used yet? Register a change delegate callback
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 				if (!mFontUsage.TryGetValue(mActiveTTF, out usage))
 					mActiveTTF.textureRebuildCallback = OnFontTextureChanged;
 #endif
@@ -947,7 +947,7 @@ public class UILabel : UIWidget
 	/// So... queue yet another work-around.
 	/// </summary>
 
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 	static void OnFontTextureChanged ()
 	{
 		for (int i = 0; i < mList.size; ++i)
@@ -1147,7 +1147,7 @@ public class UILabel : UIWidget
 	}
 #endif
 
-#if !UNITY_4_3 && !UNITY_4_5 && !UNITY_4_6 && !UNITY_4_7
+#if !UNITY_4_3 && !UNITY_4_5 && !UNITY_4_6
 	static bool mTexRebuildAdded = false;
 
 	protected override void OnEnable ()

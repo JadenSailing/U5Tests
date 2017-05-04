@@ -107,7 +107,7 @@ static public class NGUIText
 		{
 			dynamicFont.RequestCharactersInTexture(")_-", finalSize, fontStyle);
 
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 			if (!dynamicFont.GetCharacterInfo(')', out mTempChar, finalSize, fontStyle) || mTempChar.vert.height == 0f)
 			{
 				dynamicFont.RequestCharactersInTexture("A", finalSize, fontStyle);
@@ -193,7 +193,7 @@ static public class NGUIText
 		else if (dynamicFont != null)
 		{
 			if (dynamicFont.GetCharacterInfo((char)ch, out mTempChar, finalSize, fontStyle))
- #if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+ #if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 				return mTempChar.width * fontScale * pixelDensity;
  #else
 				return mTempChar.advance * fontScale * pixelDensity;
@@ -261,7 +261,7 @@ static public class NGUIText
 		{
 			if (dynamicFont.GetCharacterInfo((char)ch, out mTempChar, finalSize, fontStyle))
 			{
- #if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+ #if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 				glyph.v0.x = mTempChar.vert.xMin;
 				glyph.v1.x = glyph.v0.x + mTempChar.vert.width;
 
@@ -1387,21 +1387,11 @@ static public class NGUIText
 				ref italic, ref underline, ref strikethrough, ref ignoreColor))
 			{
 				Color fc;
-                //ignoreColor = true; //始终忽略颜色 然后默认色是底色 2017-4-5 21:35:03 by liuzhen
-                if (ignoreColor)
+
+				if (ignoreColor)
 				{
-                    /*
-                    if(mColors.size == 1)
-                    {
-                        fc = tint;
-                    }
-                    else
-                    {
-					    fc = mColors[mColors.size - 1];
-                    }
-                    */
-                    fc = mColors[mColors.size - 1];
-                    fc.a *= mAlpha * tint.a;
+					fc = mColors[mColors.size - 1];
+					fc.a *= mAlpha * tint.a;
 				}
 				else
 				{

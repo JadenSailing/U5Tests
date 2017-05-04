@@ -72,7 +72,7 @@ public class UIDragDropItem : MonoBehaviour
 	protected virtual void Awake ()
 	{
 		mTrans = transform;
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7
+#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 		mCollider = collider;
 		mCollider2D = collider2D;
 #else
