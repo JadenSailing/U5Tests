@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 /// <summary>
-/// 碰撞检测
+/// TypeUtil
 /// </summary>
 public class TypeUtil
 {

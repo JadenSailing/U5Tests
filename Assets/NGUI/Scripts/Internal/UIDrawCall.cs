@@ -4,7 +4,7 @@
 // Copyright © 2011-2015 Tasharen Entertainment
 //----------------------------------------------
 
-//#define SHOW_HIDDEN_OBJECTS
+#define SHOW_HIDDEN_OBJECTS
 
 using UnityEngine;
 using System.Collections.Generic;
@@ -781,7 +781,7 @@ public class UIDrawCall : MonoBehaviour
 		// If we're in the editor, create the game object with hide flags set right away
 		GameObject go = UnityEditor.EditorUtility.CreateGameObjectWithHideFlags(name,
  #if SHOW_HIDDEN_OBJECTS
-			HideFlags.DontSave | HideFlags.NotEditable, typeof(UIDrawCall));
+			HideFlags.DontSave/* | HideFlags.NotEditable*/, typeof(UIDrawCall));
  #else
 			HideFlags.HideAndDontSave, typeof(UIDrawCall));
  #endif
