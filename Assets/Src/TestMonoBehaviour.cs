@@ -5,7 +5,7 @@ using UnityEditor;
 
 //下面这个标签只是意味着在编辑器模式下也会执行MonoBehaviour行为
 //主要是Update和LateUpdate 但并非逐帧执行 而是在有变化时。 NGUIPanel的编辑器制作有应用
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class TestMonoBehaviour : MonoBehaviour {
 
     public GameObject Script1;
@@ -16,7 +16,7 @@ public class TestMonoBehaviour : MonoBehaviour {
         Debug.Log("Main Start" + Time.frameCount);
 
         //编辑器下修改执行顺序
-        MonoImporter.SetExecutionOrder(MonoScript.FromMonoBehaviour(this), 1);
+        //MonoImporter.SetExecutionOrder(MonoScript.FromMonoBehaviour(this), 1);
 	}
 	
 	/// <summary>
@@ -57,15 +57,22 @@ public class TestMonoBehaviour : MonoBehaviour {
          * */
         if (Time.frameCount == 5)
         {
+            GameObject res = Resources.Load<GameObject>("UI/Prefab/TestMonoScript1");
+            Script1 = GameObject.Instantiate(res);
+            Debug.Log("Begin Set Active false...");
+            Script1.SetActive(false);
+            Debug.Log("Obj1 Set Active false over");
+            //Debug.Log("Obj1 Set Active true");
+            //Script1.SetActive(true);
+            //Debug.Log("Obj1 Set Active true");
+            //Script2.SetActive(true);
+            //Debug.Log("Obj2 Set Active true");
+        }
+        if(Time.frameCount == 6)
+        {
             Debug.Log("Begin Set Active true...");
             Script1.SetActive(true);
-            Debug.Log("Obj1 Set Active true");
-            Script1.SetActive(true); //反复调用不会重复触发
-            Debug.Log("Obj1 Set Active true");
-            Script1.SetActive(true);
-            Debug.Log("Obj1 Set Active true");
-            Script2.SetActive(true);
-            Debug.Log("Obj2 Set Active true");
+            Debug.Log("Obj1 Set Active true over");
         }
 	}
 

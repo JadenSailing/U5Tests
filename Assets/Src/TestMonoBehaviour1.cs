@@ -16,7 +16,7 @@ public class TestMonoBehaviour1 : MonoBehaviour {
     /// </summary>
     void OnEnable()
     {
-        Debug.Log("TestMonoEnable1-" + Time.frameCount);
+        Debug.Log("TestMonoEnable1-" + this.enabled + "-" + Time.frameCount);
     }
     
 	/// <summary>
