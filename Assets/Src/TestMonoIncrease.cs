@@ -26,7 +26,7 @@ public class TestMonoIncrease : MonoBehaviour {
                 itemList.Add(GameObject.Instantiate(item));
             }
         }
-
+         
         if (GUI.Button(new Rect(0, 100, 200, 100), "Remove"))
         {
             for (int i = 0; i < itemList.Count; i++)

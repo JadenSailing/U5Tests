@@ -6,26 +6,32 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(TweenColor))]
-public class TweenColorEditor : UITweenerEditor
+[CustomEditor(typeof(TweenGradientColor))]
+public class TweenGradientColorEditor : UITweenerEditor
 {
 	public override void OnInspectorGUI ()
 	{
 		GUILayout.Space(6f);
 		NGUIEditorTools.SetLabelWidth(120f);
 
-		TweenColor tw = target as TweenColor;
+		TweenGradientColor tw = target as TweenGradientColor;
 		GUI.changed = false;
 
-		Color from = EditorGUILayout.ColorField("From", tw.from);
-		Color to = EditorGUILayout.ColorField("To", tw.to);
+		Color topFrom = EditorGUILayout.ColorField("From", tw.topFrom);
+		Color topTo = EditorGUILayout.ColorField("To", tw.topTo);
 
-		if (GUI.changed)
+        Color bottomFrom = EditorGUILayout.ColorField("From", tw.bottomFrom);
+        Color bottomTo = EditorGUILayout.ColorField("To", tw.bottomTo);
+
+        if (GUI.changed) 
 		{
 			NGUIEditorTools.RegisterUndo("Tween Change", tw);
-			tw.from = from;
-			tw.to = to;
-			NGUITools.SetDirty(tw);
+			tw.topFrom = topFrom;
+			tw.topTo = topTo;
+
+            tw.bottomFrom = bottomFrom;
+            tw.bottomTo = bottomTo;
+            NGUITools.SetDirty(tw);
 		}
 
 		DrawCommonProperties();
