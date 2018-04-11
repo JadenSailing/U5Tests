@@ -14,8 +14,8 @@ public class TestSpringBone : MonoBehaviour {
 
     private float _length = 1.0f;
 
-    public float StiffnessForce = 20.0f;
-    public float DragForce = 5.0f;
+    public float Stiffness = 200.0f;
+    public float Damping = 500.0f;
 
 	// Use this for initialization
 	public void StartSpring () {
@@ -35,15 +35,16 @@ public class TestSpringBone : MonoBehaviour {
         Vector3 curPos = _selfTransform.position;
         Vector3 temp = curPos;
         //stiffness
-        Vector3 sforce = _originDirection * StiffnessForce;
-        //drag (base on speed)
-        Vector3 dforce = -(curPos - _prePos) * DragForce;
+        Vector3 sforce = _originDirection * Stiffness;
+        //damping (base on speed)
+        Vector3 dforce = -(curPos - _prePos) * Damping;
         Vector3 force = dforce + sforce;
         //verlet
         curPos = curPos + (curPos - _prePos) + force * deltaTime * deltaTime;
         curPos = (curPos - _targetTransform.position).normalized * _length + _targetTransform.position;
         _prePos = temp;
         _selfTransform.position = curPos;
+        //target rotates to self
         _targetTransform.rotation = Quaternion.FromToRotation(Vector3.down, curPos - _targetTransform.position);
     }
 }
