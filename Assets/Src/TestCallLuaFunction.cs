@@ -32,28 +32,28 @@ public class TestCallLuaFunction : MonoBehaviour {
         if (func != null)
         {
             //有gc alloc
-            UnityEngine.Profiler.BeginSample("有GC");
+            UnityEngine.Profiling.Profiler.BeginSample("有GC");
             object[] r = func.Call(123456);
-            UnityEngine.Profiler.EndSample();
+            UnityEngine.Profiling.Profiler.EndSample();
             Debugger.Log("generic call return: {0}", r[0]);
 
             // no gc alloc
-            UnityEngine.Profiler.BeginSample("无GC");
+            UnityEngine.Profiling.Profiler.BeginSample("无GC");
             int num = CallFunc(func);
-            UnityEngine.Profiler.EndSample();
+            UnityEngine.Profiling.Profiler.EndSample();
             Debugger.Log("expansion call return: {0}", num);
 
             //有gc alloc
             func = _state.GetFunction("test.luaFuncStr");
-            UnityEngine.Profiler.BeginSample("有GCStr");
+            UnityEngine.Profiling.Profiler.BeginSample("有GCStr");
             object[] r2 = func.Call("AAA");
-            UnityEngine.Profiler.EndSample();
+            UnityEngine.Profiling.Profiler.EndSample();
             Debugger.Log("generic call return: {0}", r2[0]);
 
             // no gc alloc
-            UnityEngine.Profiler.BeginSample("无GCStr");
+            UnityEngine.Profiling.Profiler.BeginSample("无GCStr");
             string str = CallFunc2(func);
-            UnityEngine.Profiler.EndSample();
+            UnityEngine.Profiling.Profiler.EndSample();
             Debugger.Log("expansion call return: {0}", str);
         }
     }

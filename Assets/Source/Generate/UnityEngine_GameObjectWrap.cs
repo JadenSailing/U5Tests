@@ -14,6 +14,7 @@ public class UnityEngine_GameObjectWrap
 		L.RegFunction("GetComponents", GetComponents);
 		L.RegFunction("GetComponentsInChildren", GetComponentsInChildren);
 		L.RegFunction("GetComponentsInParent", GetComponentsInParent);
+		L.RegFunction("SetLayerRecursively", SetLayerRecursively);
 		L.RegFunction("SetActive", SetActive);
 		L.RegFunction("CompareTag", CompareTag);
 		L.RegFunction("FindGameObjectWithTag", FindGameObjectWithTag);
@@ -33,6 +34,7 @@ public class UnityEngine_GameObjectWrap
 		L.RegVar("activeInHierarchy", get_activeInHierarchy, null);
 		L.RegVar("isStatic", get_isStatic, set_isStatic);
 		L.RegVar("tag", get_tag, set_tag);
+		L.RegVar("numberName", get_numberName, set_numberName);
 		L.RegVar("scene", get_scene, null);
 		L.RegVar("gameObject", get_gameObject, null);
 		L.EndClass();
@@ -278,6 +280,23 @@ public class UnityEngine_GameObjectWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: UnityEngine.GameObject.GetComponentsInParent");
 			}
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetLayerRecursively(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			UnityEngine.GameObject obj = (UnityEngine.GameObject)ToLua.CheckObject(L, 1, typeof(UnityEngine.GameObject));
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			obj.SetLayerRecursively(arg0);
+			return 0;
 		}
 		catch(Exception e)
 		{
@@ -727,6 +746,25 @@ public class UnityEngine_GameObjectWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_numberName(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			UnityEngine.GameObject obj = (UnityEngine.GameObject)o;
+			uint ret = obj.numberName;
+			LuaDLL.lua_pushnumber(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index numberName on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_scene(IntPtr L)
 	{
 		object o = null;
@@ -818,6 +856,25 @@ public class UnityEngine_GameObjectWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index tag on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_numberName(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			UnityEngine.GameObject obj = (UnityEngine.GameObject)o;
+			uint arg0 = (uint)LuaDLL.luaL_checknumber(L, 2);
+			obj.numberName = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index numberName on a nil value" : e.Message);
 		}
 	}
 }

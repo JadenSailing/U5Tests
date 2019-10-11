@@ -12,6 +12,9 @@ public class UnityEngine_MeshColliderWrap
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("sharedMesh", get_sharedMesh, set_sharedMesh);
 		L.RegVar("convex", get_convex, set_convex);
+		L.RegVar("cookingOptions", get_cookingOptions, set_cookingOptions);
+		L.RegVar("inflateMesh", get_inflateMesh, set_inflateMesh);
+		L.RegVar("skinWidth", get_skinWidth, set_skinWidth);
 		L.EndClass();
 	}
 
@@ -96,6 +99,63 @@ public class UnityEngine_MeshColliderWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_cookingOptions(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			UnityEngine.MeshCollider obj = (UnityEngine.MeshCollider)o;
+			UnityEngine.MeshColliderCookingOptions ret = obj.cookingOptions;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index cookingOptions on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_inflateMesh(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			UnityEngine.MeshCollider obj = (UnityEngine.MeshCollider)o;
+			bool ret = obj.inflateMesh;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index inflateMesh on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_skinWidth(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			UnityEngine.MeshCollider obj = (UnityEngine.MeshCollider)o;
+			float ret = obj.skinWidth;
+			LuaDLL.lua_pushnumber(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index skinWidth on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_sharedMesh(IntPtr L)
 	{
 		object o = null;
@@ -130,6 +190,63 @@ public class UnityEngine_MeshColliderWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index convex on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_cookingOptions(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			UnityEngine.MeshCollider obj = (UnityEngine.MeshCollider)o;
+			UnityEngine.MeshColliderCookingOptions arg0 = (UnityEngine.MeshColliderCookingOptions)ToLua.CheckObject(L, 2, typeof(UnityEngine.MeshColliderCookingOptions));
+			obj.cookingOptions = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index cookingOptions on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_inflateMesh(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			UnityEngine.MeshCollider obj = (UnityEngine.MeshCollider)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.inflateMesh = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index inflateMesh on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_skinWidth(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			UnityEngine.MeshCollider obj = (UnityEngine.MeshCollider)o;
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			obj.skinWidth = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index skinWidth on a nil value" : e.Message);
 		}
 	}
 }

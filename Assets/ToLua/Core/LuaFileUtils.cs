@@ -267,14 +267,13 @@ namespace LuaInterface
 #if UNITY_5
                 TextAsset luaCode = zipFile.LoadAsset<TextAsset>(fileName);
 #else
-                TextAsset luaCode = zipFile.Load(fileName, typeof(TextAsset)) as TextAsset;
 #endif
-
-                if (luaCode != null)
-                {
-                    buffer = luaCode.bytes;
-                    Resources.UnloadAsset(luaCode);
-                }
+// 
+//                 if (luaCode != null)
+//                 {
+//                     buffer = luaCode.bytes;
+//                     Resources.UnloadAsset(luaCode);
+//                 }
             }
 
             return buffer;

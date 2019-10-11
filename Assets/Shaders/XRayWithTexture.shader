@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Shader Forge/XRayPlayer" {
     Properties {
         _MainTex ("MainTexture", 2D) = "white" {}
@@ -43,7 +45,7 @@ Shader "Shader Forge/XRayPlayer" {
 		   v2f vert(appdata v)
 		   {
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				half2 offset;
 				float3 Costomnor = mul((float3x3)UNITY_MATRIX_IT_MV,v._normal); 
 				offset.x = Costomnor.x;  
